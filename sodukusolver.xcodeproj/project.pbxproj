@@ -64,6 +64,7 @@
 		DCFB2233296CC45E00643498 /* libopencv_saliency.4.7.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DCFB21FB296CC45E00643498 /* libopencv_saliency.4.7.0.dylib */; };
 		DCFB2234296CC45E00643498 /* libopencv_barcode.4.7.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DCFB21FC296CC45E00643498 /* libopencv_barcode.4.7.0.dylib */; };
 		DCFB2235296CC45E00643498 /* libopencv_line_descriptor.4.7.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DCFB21FD296CC45E00643498 /* libopencv_line_descriptor.4.7.0.dylib */; };
+		DCFB223A296CCBB000643498 /* sodukuBoardDetector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DCFB2238296CCBB000643498 /* sodukuBoardDetector.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -138,6 +139,9 @@
 		DCFB21FC296CC45E00643498 /* libopencv_barcode.4.7.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_barcode.4.7.0.dylib; path = ../../../../opt/homebrew/Cellar/opencv/4.7.0/lib/libopencv_barcode.4.7.0.dylib; sourceTree = "<group>"; };
 		DCFB21FD296CC45E00643498 /* libopencv_line_descriptor.4.7.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_line_descriptor.4.7.0.dylib; path = ../../../../opt/homebrew/Cellar/opencv/4.7.0/lib/libopencv_line_descriptor.4.7.0.dylib; sourceTree = "<group>"; };
 		DCFB2236296CC6A600643498 /* sodukusolver.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = sodukusolver.entitlements; sourceTree = "<group>"; };
+		DCFB2238296CCBB000643498 /* sodukuBoardDetector.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = sodukuBoardDetector.cpp; sourceTree = "<group>"; };
+		DCFB2239296CCBB000643498 /* sodukuBoardDetector.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = sodukuBoardDetector.hpp; sourceTree = "<group>"; };
+		DCFB223B296CFD8A00643498 /* soduku.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = soduku.jpeg; path = ../../../Downloads/soduku.jpeg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -283,7 +287,10 @@
 			isa = PBXGroup;
 			children = (
 				DCFB2236296CC6A600643498 /* sodukusolver.entitlements */,
+				DCFB223B296CFD8A00643498 /* soduku.jpeg */,
 				DCFB1D94296CBD5300643498 /* main.cpp */,
+				DCFB2238296CCBB000643498 /* sodukuBoardDetector.cpp */,
+				DCFB2239296CCBB000643498 /* sodukuBoardDetector.hpp */,
 			);
 			path = sodukusolver;
 			sourceTree = "<group>";
@@ -346,6 +353,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCFB1D95296CBD5300643498 /* main.cpp in Sources */,
+				DCFB223A296CCBB000643498 /* sodukuBoardDetector.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
