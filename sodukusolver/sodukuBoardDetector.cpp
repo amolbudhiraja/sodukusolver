@@ -10,9 +10,13 @@
 #include <opencv2/highgui.hpp>
 #include <opencv2/imgproc.hpp>
 #include "sodukuBoardDetector.hpp"
+#include <tesseract/baseapi.h>
+#include <leptonica/allheaders.h>
+#include <opencv2/text/ocr.hpp>
 
 using namespace std;
 using namespace cv;
+using namespace tesseract;
 
 /** Find the points of the largest area contour. */
 vector<Point> getLargestContour(Mat image) {
@@ -87,6 +91,27 @@ Mat getSodukuBoard(Mat sodukuBoardImage) {
     return sodukuBoardProcessed;
 }
 
+string getImageText(Mat image) {
+    string outputText;
+    image = image(Rect(11, 11, 60, 65));
+    blur(image, image, Size(7, 7));
+    copyMakeBorder(image, image, 5, 5, 5, 5, BORDER_CONSTANT, Scalar(255, 255, 255));
+    adaptiveThreshold(image, image, 255, ADAPTIVE_THRESH_GAUSSIAN_C, THRESH_BINARY, 7, 2);
+    imshow("Processed Image", image);
+    waitKey(400);
+    Ptr<text::OCRTesseract> ocr = text::OCRTesseract::create();
+    ocr->run(image, outputText);
+    return outputText.data();
+    
+//    TessBaseAPI *ocr = new TessBaseAPI();
+//    ocr->Init(NULL, "eng");
+//    ocr->SetPageSegMode(PSM_SINGLE_CHAR);
+//    ocr->SetImage(image.data, image.cols, image.rows, 4, (int) image.step);
+//    string imageText = string(ocr->GetUTF8Text());
+//    return imageText;
+
+}
+
 /** Detect and return a matrix version of the Soduku Board from the given image. */
 vector<vector<String>> sodukuBoardDetector(Mat sodukuBoardImage) {
     Mat sodukuBoardCropped = getSodukuBoard(sodukuBoardImage);
@@ -98,8 +123,8 @@ vector<vector<String>> sodukuBoardDetector(Mat sodukuBoardImage) {
                int x = i * sodukuBoardCropped.cols / 9;
                int y = j * sodukuBoardCropped.rows / 9;
                Mat box = sodukuBoardCropped(Rect(x, y, sodukuBoardCropped.cols / 9, sodukuBoardCropped.rows / 9));
-               imshow("DEBUG", box);
-               waitKey(400);
+               string num = getImageText(box);
+               cout << "Output Text: " << num << endl;
                boxes.push_back(box);
            }
        }
