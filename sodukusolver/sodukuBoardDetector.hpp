@@ -9,7 +9,8 @@
 #define sodukuBoardDetector_hpp
 
 using namespace cv;
+using namespace std;
 
-void sodukuBoardDetector(Mat sodukuBoardImage);
+vector<vector<String>> sodukuBoardDetector(Mat sodukuBoardImage);
 
 #endif /* sodukuBoardDetector_hpp */
