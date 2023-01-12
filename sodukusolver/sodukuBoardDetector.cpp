@@ -80,8 +80,9 @@ Mat getWarp(Mat img, vector<Point> points, float w, float h) {
 /** Crop out the Soduku Board from the Image. */
 Mat getSodukuBoard(Mat sodukuBoardImage) {
     Mat sodukuBoardProcessed;
-    GaussianBlur(sodukuBoardImage, sodukuBoardProcessed, Size(7, 7), 3);
-    Canny(sodukuBoardProcessed, sodukuBoardProcessed, 30, 80);
+    GaussianBlur(sodukuBoardImage, sodukuBoardImage, Size(3, 3), 3);
+    sodukuBoardImage.convertTo(sodukuBoardImage, CV_8UC1);
+    Canny(sodukuBoardImage, sodukuBoardProcessed, 30, 80);
     Mat imgCanny = sodukuBoardProcessed;
     Mat kernel = getStructuringElement(MORPH_RECT, Size(3, 3));
     dilate(sodukuBoardProcessed, sodukuBoardProcessed, kernel);
@@ -89,27 +90,6 @@ Mat getSodukuBoard(Mat sodukuBoardImage) {
     vector<Point> boardPoints = reorder(initialPoints);
     sodukuBoardProcessed = getWarp(sodukuBoardImage, boardPoints, 700, 700);
     return sodukuBoardProcessed;
-}
-
-string getImageText(Mat image) {
-    string outputText;
-    image = image(Rect(11, 11, 60, 65));
-    blur(image, image, Size(7, 7));
-    copyMakeBorder(image, image, 5, 5, 5, 5, BORDER_CONSTANT, Scalar(255, 255, 255));
-    adaptiveThreshold(image, image, 255, ADAPTIVE_THRESH_GAUSSIAN_C, THRESH_BINARY, 7, 2);
-    imshow("Processed Image", image);
-    waitKey(400);
-    Ptr<text::OCRTesseract> ocr = text::OCRTesseract::create();
-    ocr->run(image, outputText);
-    return outputText.data();
-    
-//    TessBaseAPI *ocr = new TessBaseAPI();
-//    ocr->Init(NULL, "eng");
-//    ocr->SetPageSegMode(PSM_SINGLE_CHAR);
-//    ocr->SetImage(image.data, image.cols, image.rows, 4, (int) image.step);
-//    string imageText = string(ocr->GetUTF8Text());
-//    return imageText;
-
 }
 
 /** Detect and return a matrix version of the Soduku Board from the given image. */
@@ -123,12 +103,11 @@ vector<vector<String>> sodukuBoardDetector(Mat sodukuBoardImage) {
                int x = i * sodukuBoardCropped.cols / 9;
                int y = j * sodukuBoardCropped.rows / 9;
                Mat box = sodukuBoardCropped(Rect(x, y, sodukuBoardCropped.cols / 9, sodukuBoardCropped.rows / 9));
-               string num = getImageText(box);
-               cout << "Output Text: " << num << endl;
+               imshow("BOX", box);
+               waitKey(400);
                boxes.push_back(box);
            }
        }
     waitKey(0);
     return board;
 }
-

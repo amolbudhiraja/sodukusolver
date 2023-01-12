@@ -67,6 +67,7 @@
 		DCFB223A296CCBB000643498 /* sodukuBoardDetector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DCFB2238296CCBB000643498 /* sodukuBoardDetector.cpp */; };
 		DCFB223D296D47C600643498 /* libtesseract.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DCFB223C296D47C600643498 /* libtesseract.5.dylib */; };
 		DCFB223F296D490200643498 /* liblept.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DCFB223E296D490200643498 /* liblept.5.dylib */; };
+		DCFB2242296E230A00643498 /* textClassifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DCFB2240296E230A00643498 /* textClassifier.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -82,6 +83,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		DCB9A35E296F6DD5003F6D5E /* testdigit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = testdigit.png; path = ../../../Downloads/testdigit.png; sourceTree = "<group>"; };
+		DCB9A36029700396003F6D5E /* testdigit9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = testdigit9.png; path = ../../../Downloads/testdigit9.png; sourceTree = "<group>"; };
 		DCFB1D91296CBD5300643498 /* sodukusolver */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = sodukusolver; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCFB1D94296CBD5300643498 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		DCFB21C3296CC45D00643498 /* libopencv_bgsegm.4.7.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_bgsegm.4.7.0.dylib; path = ../../../../opt/homebrew/Cellar/opencv/4.7.0/lib/libopencv_bgsegm.4.7.0.dylib; sourceTree = "<group>"; };
@@ -146,6 +149,10 @@
 		DCFB223B296CFD8A00643498 /* soduku.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = soduku.jpeg; path = ../../../Downloads/soduku.jpeg; sourceTree = "<group>"; };
 		DCFB223C296D47C600643498 /* libtesseract.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libtesseract.5.dylib; path = ../../../../opt/homebrew/Cellar/tesseract/5.3.0/lib/libtesseract.5.dylib; sourceTree = "<group>"; };
 		DCFB223E296D490200643498 /* liblept.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = liblept.5.dylib; path = ../../../../opt/homebrew/Cellar/leptonica/1.82.0_1/lib/liblept.5.dylib; sourceTree = "<group>"; };
+		DCFB2240296E230A00643498 /* textClassifier.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = textClassifier.cpp; sourceTree = "<group>"; };
+		DCFB2241296E230A00643498 /* textClassifier.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = textClassifier.hpp; sourceTree = "<group>"; };
+		DCFB2243296E268F00643498 /* digits.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = digits.png; path = ../../../Downloads/digits.png; sourceTree = "<group>"; };
+		DCFB2244296E269300643498 /* test_digits.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = test_digits.png; path = ../../../Downloads/test_digits.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -296,9 +303,15 @@
 			children = (
 				DCFB2236296CC6A600643498 /* sodukusolver.entitlements */,
 				DCFB223B296CFD8A00643498 /* soduku.jpeg */,
+				DCFB2243296E268F00643498 /* digits.png */,
+				DCB9A36029700396003F6D5E /* testdigit9.png */,
+				DCB9A35E296F6DD5003F6D5E /* testdigit.png */,
+				DCFB2244296E269300643498 /* test_digits.png */,
 				DCFB1D94296CBD5300643498 /* main.cpp */,
 				DCFB2238296CCBB000643498 /* sodukuBoardDetector.cpp */,
 				DCFB2239296CCBB000643498 /* sodukuBoardDetector.hpp */,
+				DCFB2240296E230A00643498 /* textClassifier.cpp */,
+				DCFB2241296E230A00643498 /* textClassifier.hpp */,
 			);
 			path = sodukusolver;
 			sourceTree = "<group>";
@@ -362,6 +375,7 @@
 			files = (
 				DCFB1D95296CBD5300643498 /* main.cpp in Sources */,
 				DCFB223A296CCBB000643498 /* sodukuBoardDetector.cpp in Sources */,
+				DCFB2242296E230A00643498 /* textClassifier.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
