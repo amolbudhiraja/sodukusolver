@@ -94,22 +94,18 @@ Mat getSodukuBoard(Mat sodukuBoardImage) {
 }
 
 /** Detect and return a matrix version of the Soduku Board from the given image. */
-vector<vector<String>> sodukuBoardDetector(Mat sodukuBoardImage, Mat trainData) {
+vector<Mat> sodukuBoardDetector(Mat sodukuBoardImage) {
     Mat sodukuBoardCropped = getSodukuBoard(sodukuBoardImage);
-    imshow("Cropped Soduku Board", sodukuBoardCropped);
-    vector<vector<String>> board;
+    imshow("CROP", sodukuBoardCropped);
+    waitKey(800); 
     vector<Mat> boxes;
        for(int i = 0; i < 9; i++) {
            for(int j = 0; j < 9; j++) {
                int x = i * sodukuBoardCropped.cols / 9;
                int y = j * sodukuBoardCropped.rows / 9;
                Mat box = sodukuBoardCropped(Rect(x, y, (sodukuBoardCropped.cols / 9), (sodukuBoardCropped.rows / 9)));
-               cout << classifyTextFromImage(trainData, box) << endl;
-               imshow("BOX", box);
-               waitKey(400);
                boxes.push_back(box);
            }
        }
-    waitKey(0);
-    return board;
+    return boxes;
 }

@@ -17,10 +17,18 @@ using namespace cv;
 using namespace std;
 
 int main() {
-    Mat sodukuBoardImage = imread("/Users/abudhiraja/Downloads/soduku.jpeg");
-    Mat trainData = imread("/Users/abudhiraja/Downloads/digits.png");
-    Mat testDigit = imread("/Users/abudhiraja/Downloads/testdigit9.png");
-    Mat sodukuBoardTrain = imread("/Users/abudhiraja/Downloads/sodukuboardtrain.jpeg");
-    sodukuBoardDetector(sodukuBoardImage, trainData);
+    Mat sodukuBoardImage = imread("/Users/abudhiraja/Documents/sodukusolver/sodukusolver/media/soduku.jpeg");
+    vector<string> trainBoardsLocations = {"/Users/abudhiraja/Documents/sodukusolver/sodukusolver/media/sodukutrain1.png", "/Users/abudhiraja/Documents/sodukusolver/sodukusolver/media/sodukutrain2.png", "/Users/abudhiraja/Documents/sodukusolver/sodukusolver/media/sodukutrain3.png", "/Users/abudhiraja/Documents/sodukusolver/sodukusolver/media/sodukutrain4.png", "/Users/abudhiraja/Documents/sodukusolver/sodukusolver/media/sodukutrain5.png"};
+    vector<Mat> trainBoxes;
+    for (string location : trainBoardsLocations) {
+        Mat boardImage = imread(location);
+        vector<Mat> boxes = sodukuBoardDetector(boardImage);
+        for (Mat box : boxes) {
+            imshow("BOX", box);
+            waitKey(100);
+            trainBoxes.push_back(box);
+        }
+    }
+    vector<Mat> boxes = sodukuBoardDetector(sodukuBoardImage);
     return 0;
 }

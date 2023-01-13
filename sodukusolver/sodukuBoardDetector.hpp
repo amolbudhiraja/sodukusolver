@@ -11,6 +11,6 @@
 using namespace cv;
 using namespace std;
 
-vector<vector<String>> sodukuBoardDetector(Mat sodukuBoardImage, Mat trainData);
+vector<Mat> sodukuBoardDetector(Mat sodukuBoardImage); 
 
 #endif /* sodukuBoardDetector_hpp */
