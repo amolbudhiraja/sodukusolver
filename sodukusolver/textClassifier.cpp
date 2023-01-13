@@ -18,34 +18,20 @@ using namespace std;
 using namespace cv;
 using namespace cv::dnn;
 
-/** Take the training image and split it into smaller subimages. */
-vector<Mat> splitTrainData(Mat image) {
-    vector<Mat> trainImages;
-    int subDivision = 50;
-    for (int i = 0; i < subDivision; i++) {
-        for (int j = 0; j < subDivision; j++) {
-            int x = i * image.cols / subDivision;
-            int y = j * image.rows / subDivision;
-            Mat subImage = image(Rect(x, y, image.cols / subDivision, image.rows / subDivision));
-            cvtColor(subImage, subImage, COLOR_BGRA2GRAY);
-            subImage.convertTo(subImage, CV_32F);
-            subImage.reshape(1, 1);
-            trainImages.push_back(subImage);
-        }
-    }
-    return trainImages;
-}
 
-/** Get the labels for the data. */
+/** Get the labels for the training data. Note: 10 represents an empty image. */
 vector<int> getLabels() {
+    vector<int> board1 = {10, 10, 10, 10, 1, 9, 4, 10, 10, 10, 10, 10, 10, 10, 10, 5, 8, 7, 10, 10, 10, 10, 10, 3, 10, 6, 10, 10, 3, 10, 10, 10, 2, 1, 10, 10, 5, 10, 10, 7, 10, 8, 10, 10, 9, 10, 10, 4, 6, 10, 10, 10, 5, 10, 10, 2, 10, 4, 10, 10, 10, 10, 10, 7, 5, 3, 10, 10, 10, 10, 10, 10, 10, 10, 8, 3, 2, 10, 10, 10, 10};
+    vector<int> board2 = {10, 10, 5, 10, 10, 10, 6, 10, 10, 10, 10, 10, 10, 10, 2, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 3, 10, 8, 10, 10, 10, 10, 10, 10, 4, 2, 10, 10, 10, 7, 10, 3, 10, 10, 10, 1, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 8, 1, 10, 10, 10, 6, 10, 4, 10, 10, 10, 10, 7, 10, 10, 10, 3, 10, 10, 10, 10, 5, 10, 10};
+    vector<int> board3 = {10, 10, 10, 10, 9, 3, 1, 10, 10, 10, 1, 5, 10, 10, 10, 8, 7, 10, 10, 10, 4, 10, 10, 8, 10, 9, 10, 10, 10, 10, 10, 1, 4, 5, 6, 8, 10, 10, 10, 10, 3, 10, 10, 10, 10, 5, 8, 2, 9, 6, 10, 10, 10, 10, 10, 6, 10, 5, 10, 10, 3, 10, 10, 10, 3, 7, 10, 10, 10, 6, 1, 10, 10, 10, 8, 3, 7, 10, 10, 10, 10};
+    vector<int> board4 = {2, 10, 8, 10, 10, 5, 10, 10, 10, 9, 3, 10, 10, 10, 10, 10, 2, 5, 5, 1, 6, 7, 10, 10, 10, 10, 4, 7, 8, 10, 10, 3, 10, 5, 6, 10, 10, 6, 10, 5, 8, 1, 10, 10, 10, 10, 5, 10, 10, 7, 6, 10, 10, 8, 8, 10, 10, 10, 10, 7, 1, 3, 6, 6, 2, 10, 10, 10, 10, 10, 5, 7, 10, 10, 10, 6, 10, 10, 9, 10, 2};
+    vector<int> board5 = {10, 10, 10, 10, 7, 10, 10, 10, 10, 10, 9, 10, 5, 10, 2, 10, 1, 10, 10, 10, 8, 9, 10, 3, 5, 10, 10, 10, 5, 4, 10, 10, 10, 3, 6, 10, 7, 10, 10, 10, 10, 10, 10, 10, 1, 10, 6, 1, 10, 10, 10, 7, 8, 10, 10, 10, 2, 8, 10, 5, 4, 10, 10, 10, 8, 10, 4, 10, 7, 10, 9, 10, 10, 10, 10, 10, 6, 10, 10, 10, 10};
     vector<int> labels;
-    for (int i = 0; i < 50; i++) {
-        for (int j = 0; j < 10; j++) {
-            for (int k = 0; k < 5; k++) {
-                labels.push_back(j);
-            }
-        }
-    }
+    labels.insert(labels.end(), board1.begin(), board1.end());
+    labels.insert(labels.end(), board2.begin(), board2.end());
+    labels.insert(labels.end(), board3.begin(), board3.end());
+    labels.insert(labels.end(), board4.begin(), board4.end());
+    labels.insert(labels.end(), board5.begin(), board5.end());
     return labels;
 }
 
@@ -84,8 +70,7 @@ Mat processTestImage(Mat imageClassify, vector<Mat> trainingImages) {
 }
 
 /** Classify the text in the image using a KNN (K-Nearest Neighbors Classifier). */
-string classifyTextFromImage(Mat trainImage, Mat imageClassify) {
-    vector<Mat> trainingImages = splitTrainData(trainImage);
+string classifyTextFromImage(vector<Mat> trainingImages, Mat imageClassify) {
     vector<int> labels = getLabels();
     Ptr<ml::KNearest> knn = getKNNClassifier(trainingImages, labels);
     Mat processedTestImage = processTestImage(imageClassify, trainingImages);
