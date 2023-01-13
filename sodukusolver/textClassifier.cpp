@@ -60,7 +60,7 @@ Ptr<ml::KNearest> getKNNClassifier(vector<Mat> trainingImages, vector<int> label
 
 /** Pre-process the test image to invert its colors, and ensure that its size and number of channels match the training data. */
 Mat processTestImage(Mat imageClassify, vector<Mat> trainingImages) {
-    bitwise_not(imageClassify, imageClassify); // The Soduku Board Images had a white background, however we need to invert the colors to match the traning data.
+//    bitwise_not(imageClassify, imageClassify); // The Soduku Board Images had a white background, however we need to invert the colors to match the traning data.
     cvtColor(imageClassify, imageClassify, COLOR_BGR2GRAY);
     resize(imageClassify, imageClassify, Size(trainingImages[0].cols,trainingImages[0].rows));
     Mat processedTestImage = imageClassify.clone();
@@ -80,6 +80,6 @@ string classifyTextFromImage(vector<Mat> trainingImages, Mat imageClassify) {
     if (classification == "10") { // 10 refers to an empty page.
         classification = ".";
     }
-    cout << "Classification: " << classification << endl;
+//    cout << "Classification: " << classification << endl;
     return classification;
 }

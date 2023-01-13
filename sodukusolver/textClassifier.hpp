@@ -11,6 +11,6 @@
 using namespace std;
 using namespace cv;
 
-string classifyTextFromImage(Mat image, Mat testImage);
+string classifyTextFromImage(vector<Mat> trainingImages, Mat imageClassify);
 
 #endif /* textClassifier_hpp */

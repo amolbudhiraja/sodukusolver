@@ -96,8 +96,8 @@ Mat getSodukuBoard(Mat sodukuBoardImage) {
 /** Detect and return a matrix version of the Soduku Board from the given image. */
 vector<Mat> sodukuBoardDetector(Mat sodukuBoardImage) {
     Mat sodukuBoardCropped = getSodukuBoard(sodukuBoardImage);
-    imshow("CROP", sodukuBoardCropped);
-    waitKey(800); 
+//    imshow("CROP", sodukuBoardCropped);
+//    waitKey(800);
     vector<Mat> boxes;
        for(int i = 0; i < 9; i++) {
            for(int j = 0; j < 9; j++) {
