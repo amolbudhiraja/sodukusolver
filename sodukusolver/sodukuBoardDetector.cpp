@@ -13,6 +13,7 @@
 #include <tesseract/baseapi.h>
 #include <leptonica/allheaders.h>
 #include <opencv2/text/ocr.hpp>
+#include "textClassifier.hpp"
 
 using namespace std;
 using namespace cv;
@@ -93,7 +94,7 @@ Mat getSodukuBoard(Mat sodukuBoardImage) {
 }
 
 /** Detect and return a matrix version of the Soduku Board from the given image. */
-vector<vector<String>> sodukuBoardDetector(Mat sodukuBoardImage) {
+vector<vector<String>> sodukuBoardDetector(Mat sodukuBoardImage, Mat trainData) {
     Mat sodukuBoardCropped = getSodukuBoard(sodukuBoardImage);
     imshow("Cropped Soduku Board", sodukuBoardCropped);
     vector<vector<String>> board;
@@ -102,7 +103,8 @@ vector<vector<String>> sodukuBoardDetector(Mat sodukuBoardImage) {
            for(int j = 0; j < 9; j++) {
                int x = i * sodukuBoardCropped.cols / 9;
                int y = j * sodukuBoardCropped.rows / 9;
-               Mat box = sodukuBoardCropped(Rect(x, y, sodukuBoardCropped.cols / 9, sodukuBoardCropped.rows / 9));
+               Mat box = sodukuBoardCropped(Rect(x, y, (sodukuBoardCropped.cols / 9), (sodukuBoardCropped.rows / 9)));
+               cout << classifyTextFromImage(trainData, box) << endl;
                imshow("BOX", box);
                waitKey(400);
                boxes.push_back(box);

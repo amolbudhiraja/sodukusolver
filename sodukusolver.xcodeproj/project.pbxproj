@@ -85,6 +85,7 @@
 /* Begin PBXFileReference section */
 		DCB9A35E296F6DD5003F6D5E /* testdigit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = testdigit.png; path = ../../../Downloads/testdigit.png; sourceTree = "<group>"; };
 		DCB9A36029700396003F6D5E /* testdigit9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = testdigit9.png; path = ../../../Downloads/testdigit9.png; sourceTree = "<group>"; };
+		DCCDB26C29715FAE007B72E9 /* sodukuboardtrain.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = sodukuboardtrain.jpeg; path = ../../../Downloads/sodukuboardtrain.jpeg; sourceTree = "<group>"; };
 		DCFB1D91296CBD5300643498 /* sodukusolver */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = sodukusolver; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCFB1D94296CBD5300643498 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		DCFB21C3296CC45D00643498 /* libopencv_bgsegm.4.7.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_bgsegm.4.7.0.dylib; path = ../../../../opt/homebrew/Cellar/opencv/4.7.0/lib/libopencv_bgsegm.4.7.0.dylib; sourceTree = "<group>"; };
@@ -303,6 +304,7 @@
 			children = (
 				DCFB2236296CC6A600643498 /* sodukusolver.entitlements */,
 				DCFB223B296CFD8A00643498 /* soduku.jpeg */,
+				DCCDB26C29715FAE007B72E9 /* sodukuboardtrain.jpeg */,
 				DCFB2243296E268F00643498 /* digits.png */,
 				DCB9A36029700396003F6D5E /* testdigit9.png */,
 				DCB9A35E296F6DD5003F6D5E /* testdigit.png */,

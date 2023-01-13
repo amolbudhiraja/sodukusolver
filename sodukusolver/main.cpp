@@ -20,7 +20,7 @@ int main() {
     Mat sodukuBoardImage = imread("/Users/abudhiraja/Downloads/soduku.jpeg");
     Mat trainData = imread("/Users/abudhiraja/Downloads/digits.png");
     Mat testDigit = imread("/Users/abudhiraja/Downloads/testdigit9.png");
-    sodukuBoardDetector(sodukuBoardImage);
-    classifyTextFromImage(trainData, testDigit);
+    Mat sodukuBoardTrain = imread("/Users/abudhiraja/Downloads/sodukuboardtrain.jpeg");
+    sodukuBoardDetector(sodukuBoardImage, trainData);
     return 0;
 }
