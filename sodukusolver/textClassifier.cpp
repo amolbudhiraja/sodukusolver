@@ -58,28 +58,46 @@ Ptr<ml::KNearest> getKNNClassifier(vector<Mat> trainingImages, vector<int> label
     return knn;
 }
 
-/** Pre-process the test image to invert its colors, and ensure that its size and number of channels match the training data. */
+/** Pre-process the test image to ensure that its size and number of channels match the training data. */
 Mat processTestImage(Mat imageClassify, vector<Mat> trainingImages) {
-//    bitwise_not(imageClassify, imageClassify); // The Soduku Board Images had a white background, however we need to invert the colors to match the traning data.
     cvtColor(imageClassify, imageClassify, COLOR_BGR2GRAY);
-    resize(imageClassify, imageClassify, Size(trainingImages[0].cols,trainingImages[0].rows));
+    blur(imageClassify, imageClassify, Size(3, 3));
     Mat processedTestImage = imageClassify.clone();
     processedTestImage.convertTo(processedTestImage, CV_32F);
     processedTestImage = processedTestImage.reshape(1,1);
+    resize(processedTestImage, processedTestImage, Size(trainingImages[0].cols, trainingImages[0].rows));
     return processedTestImage;
+}
+
+/** Pre-process the training images to ensure that its size and number of channels match the training data. */
+vector<Mat> processTrainImages(vector<Mat> trainingImages) {
+    vector<Mat> processedTrainingImages;
+    for (Mat image: trainingImages) {
+        blur(image, image, Size(3, 3));
+        cvtColor(image, image, COLOR_BGRA2GRAY);
+        image.convertTo(image, CV_32F);
+        image = image.reshape(1,1);
+        processedTrainingImages.push_back(image);
+    }
+    return processedTrainingImages;
 }
 
 /** Classify the text in the image using a KNN (K-Nearest Neighbors Classifier). */
 string classifyTextFromImage(vector<Mat> trainingImages, Mat imageClassify) {
+    imageClassify = trainingImages[392];
+    imshow("DEBUG", imageClassify);
+    waitKey(500);
     vector<int> labels = getLabels();
-    Ptr<ml::KNearest> knn = getKNNClassifier(trainingImages, labels);
-    Mat processedTestImage = processTestImage(imageClassify, trainingImages);
+    vector<Mat> processedTrainingImages = processTrainImages(trainingImages);
+    Ptr<ml::KNearest> knn = getKNNClassifier(processedTrainingImages, labels);
+    Mat processedTestImage = processTestImage(imageClassify, processedTrainingImages);
     Mat results;
+    knn->setIsClassifier(true);
     float response = knn->findNearest(processedTestImage, 3, results);
     string classification = to_string((int) response);
-    if (classification == "10") { // 10 refers to an empty page.
+    if (classification == "10") { // 10 refers to an empty block.
         classification = ".";
     }
-//    cout << "Classification: " << classification << endl;
+    cout << "Classification: " << classification << endl;
     return classification;
 }

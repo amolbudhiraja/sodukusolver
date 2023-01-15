@@ -25,8 +25,6 @@ int main() {
         Mat boardImage = imread(location);
         vector<Mat> boxes = sodukuBoardDetector(boardImage);
         for (Mat box : boxes) {
-//            imshow("BOX", box);
-//            waitKey(100);
             trainBoxes.push_back(box);
         }
     }
