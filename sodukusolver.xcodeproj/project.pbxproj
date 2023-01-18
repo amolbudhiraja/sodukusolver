@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DC2777CA2977EABC00C8F5AD /* libtesseract.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DC2777C92977EABC00C8F5AD /* libtesseract.5.dylib */; };
 		DCFB1D95296CBD5300643498 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DCFB1D94296CBD5300643498 /* main.cpp */; };
 		DCFB21FE296CC45E00643498 /* libopencv_bgsegm.4.7.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DCFB21C3296CC45D00643498 /* libopencv_bgsegm.4.7.0.dylib */; };
 		DCFB21FF296CC45E00643498 /* libopencv_fuzzy.4.7.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DCFB21C4296CC45D00643498 /* libopencv_fuzzy.4.7.0.dylib */; };
@@ -65,7 +66,6 @@
 		DCFB2234296CC45E00643498 /* libopencv_barcode.4.7.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DCFB21FC296CC45E00643498 /* libopencv_barcode.4.7.0.dylib */; };
 		DCFB2235296CC45E00643498 /* libopencv_line_descriptor.4.7.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DCFB21FD296CC45E00643498 /* libopencv_line_descriptor.4.7.0.dylib */; };
 		DCFB223A296CCBB000643498 /* sodukuBoardDetector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DCFB2238296CCBB000643498 /* sodukuBoardDetector.cpp */; };
-		DCFB223D296D47C600643498 /* libtesseract.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DCFB223C296D47C600643498 /* libtesseract.5.dylib */; };
 		DCFB223F296D490200643498 /* liblept.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DCFB223E296D490200643498 /* liblept.5.dylib */; };
 		DCFB2242296E230A00643498 /* textClassifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DCFB2240296E230A00643498 /* textClassifier.cpp */; };
 /* End PBXBuildFile section */
@@ -83,6 +83,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		DC2777C92977EABC00C8F5AD /* libtesseract.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libtesseract.5.dylib; path = ../../../../opt/homebrew/Cellar/tesseract/5.3.0_1/lib/libtesseract.5.dylib; sourceTree = "<group>"; };
 		DC84CF0E2971629F00F37CB7 /* media */ = {isa = PBXFileReference; lastKnownFileType = folder; path = media; sourceTree = "<group>"; };
 		DCFB1D91296CBD5300643498 /* sodukusolver */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = sodukusolver; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCFB1D94296CBD5300643498 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
@@ -145,7 +146,6 @@
 		DCFB2236296CC6A600643498 /* sodukusolver.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = sodukusolver.entitlements; sourceTree = "<group>"; };
 		DCFB2238296CCBB000643498 /* sodukuBoardDetector.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = sodukuBoardDetector.cpp; sourceTree = "<group>"; };
 		DCFB2239296CCBB000643498 /* sodukuBoardDetector.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = sodukuBoardDetector.hpp; sourceTree = "<group>"; };
-		DCFB223C296D47C600643498 /* libtesseract.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libtesseract.5.dylib; path = ../../../../opt/homebrew/Cellar/tesseract/5.3.0/lib/libtesseract.5.dylib; sourceTree = "<group>"; };
 		DCFB223E296D490200643498 /* liblept.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = liblept.5.dylib; path = ../../../../opt/homebrew/Cellar/leptonica/1.82.0_1/lib/liblept.5.dylib; sourceTree = "<group>"; };
 		DCFB2240296E230A00643498 /* textClassifier.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = textClassifier.cpp; sourceTree = "<group>"; };
 		DCFB2241296E230A00643498 /* textClassifier.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = textClassifier.hpp; sourceTree = "<group>"; };
@@ -161,7 +161,6 @@
 				DCFB2229296CC45E00643498 /* libopencv_video.4.7.0.dylib in Frameworks */,
 				DCFB2235296CC45E00643498 /* libopencv_line_descriptor.4.7.0.dylib in Frameworks */,
 				DCFB222A296CC45E00643498 /* libopencv_videoio.4.7.0.dylib in Frameworks */,
-				DCFB223D296D47C600643498 /* libtesseract.5.dylib in Frameworks */,
 				DCFB2232296CC45E00643498 /* libopencv_viz.4.7.0.dylib in Frameworks */,
 				DCFB2202296CC45E00643498 /* libopencv_superres.4.7.0.dylib in Frameworks */,
 				DCFB220E296CC45E00643498 /* libopencv_videostab.4.7.0.dylib in Frameworks */,
@@ -201,6 +200,7 @@
 				DCFB2205296CC45E00643498 /* libopencv_xphoto.4.7.0.dylib in Frameworks */,
 				DCFB2216296CC45E00643498 /* libopencv_xfeatures2d.4.7.0.dylib in Frameworks */,
 				DCFB223F296D490200643498 /* liblept.5.dylib in Frameworks */,
+				DC2777CA2977EABC00C8F5AD /* libtesseract.5.dylib in Frameworks */,
 				DCFB2208296CC45E00643498 /* libopencv_structured_light.4.7.0.dylib in Frameworks */,
 				DCFB2203296CC45E00643498 /* libopencv_reg.4.7.0.dylib in Frameworks */,
 				DCFB2230296CC45E00643498 /* libopencv_surface_matching.4.7.0.dylib in Frameworks */,
@@ -223,8 +223,8 @@
 		DCFB1D88296CBD5300643498 = {
 			isa = PBXGroup;
 			children = (
+				DC2777C92977EABC00C8F5AD /* libtesseract.5.dylib */,
 				DCFB223E296D490200643498 /* liblept.5.dylib */,
-				DCFB223C296D47C600643498 /* libtesseract.5.dylib */,
 				DCFB21D0296CC45D00643498 /* libopencv_alphamat.4.7.0.dylib */,
 				DCFB21E5296CC45D00643498 /* libopencv_aruco.4.7.0.dylib */,
 				DCFB21FC296CC45E00643498 /* libopencv_barcode.4.7.0.dylib */,
@@ -492,7 +492,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				HEADER_SEARCH_PATHS = (
 					"/opt/homebrew/Cellar/opencv/4.7.0/include/**",
-					"/opt/homebrew/Cellar/tesseract/5.3.0/include/**",
+					"/opt/homebrew/Cellar/tesseract/5.3.0_1/include/**",
 					"/opt/homebrew/Cellar/leptonica/1.82.0_1/include/**",
 				);
 				LIBRARY_SEARCH_PATHS = (
@@ -501,6 +501,7 @@
 					"/opt/homebrew/Cellar/opencv/4.7.0/lib/**",
 					/opt/homebrew/Cellar/tesseract/5.3.0/lib,
 					/opt/homebrew/Cellar/leptonica/1.82.0_1/lib,
+					/opt/homebrew/Cellar/tesseract/5.3.0_1/lib,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -515,7 +516,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				HEADER_SEARCH_PATHS = (
 					"/opt/homebrew/Cellar/opencv/4.7.0/include/**",
-					"/opt/homebrew/Cellar/tesseract/5.3.0/include/**",
+					"/opt/homebrew/Cellar/tesseract/5.3.0_1/include/**",
 					"/opt/homebrew/Cellar/leptonica/1.82.0_1/include/**",
 				);
 				LIBRARY_SEARCH_PATHS = (
@@ -524,6 +525,7 @@
 					"/opt/homebrew/Cellar/opencv/4.7.0/lib/**",
 					/opt/homebrew/Cellar/tesseract/5.3.0/lib,
 					/opt/homebrew/Cellar/leptonica/1.82.0_1/lib,
+					/opt/homebrew/Cellar/tesseract/5.3.0_1/lib,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

@@ -17,19 +17,13 @@ using namespace cv;
 using namespace std;
 
 int main() {
-    Mat testImage = imread("/Users/abudhiraja/Documents/sodukusolver/sodukusolver/media/testdigit9.png");
     Mat sodukuBoardImage = imread("/Users/abudhiraja/Documents/sodukusolver/sodukusolver/media/soduku.jpeg");
-    vector<string> trainBoardsLocations = {"/Users/abudhiraja/Documents/sodukusolver/sodukusolver/media/sodukutrain1.png", "/Users/abudhiraja/Documents/sodukusolver/sodukusolver/media/sodukutrain2.png", "/Users/abudhiraja/Documents/sodukusolver/sodukusolver/media/sodukutrain3.png", "/Users/abudhiraja/Documents/sodukusolver/sodukusolver/media/sodukutrain4.png", "/Users/abudhiraja/Documents/sodukusolver/sodukusolver/media/sodukutrain5.png"};
-    vector<Mat> trainBoxes;
-    for (string location : trainBoardsLocations) {
-        Mat boardImage = imread(location);
-        vector<Mat> boxes = sodukuBoardDetector(boardImage);
-        for (Mat box : boxes) {
-            trainBoxes.push_back(box);
-        }
-    }
+    Mat trainingImage = imread("/Users/abudhiraja/Documents/sodukusolver/sodukusolver/media/sodukutrain1.png");
     vector<Mat> boxes = sodukuBoardDetector(sodukuBoardImage);
-    string result = classifyTextFromImage(trainBoxes, testImage);
-    cout << result << endl;
+    vector<Mat> trainingImages = sodukuBoardDetector(trainingImage);
+    for (Mat box: boxes) {
+        string value = classifyTextFromImage(trainingImages, box); // Train model once before iteration for efficiency.
+        cout << value << endl;
+    }
     return 0;
 }
