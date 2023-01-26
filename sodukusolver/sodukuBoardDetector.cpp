@@ -57,11 +57,10 @@ vector<Point> reorder(vector<Point> points) {
         sumPoints.push_back(points[i].x + points[i].y);
         subPoints.push_back(points[i].x - points[i].y);
     }
-   
     newPoints.push_back(points[min_element(sumPoints.begin(), sumPoints.end()) - sumPoints.begin()]); // 0
-    newPoints.push_back(points[max_element(subPoints.begin(), subPoints.end()) - subPoints.begin()]); //1
-    newPoints.push_back(points[min_element(subPoints.begin(), subPoints.end()) - subPoints.begin()]); //2
-    newPoints.push_back(points[max_element(sumPoints.begin(), sumPoints.end()) - sumPoints.begin()]); //3
+    newPoints.push_back(points[max_element(subPoints.begin(), subPoints.end()) - subPoints.begin()]); // 1
+    newPoints.push_back(points[min_element(subPoints.begin(), subPoints.end()) - subPoints.begin()]); // 2
+    newPoints.push_back(points[max_element(sumPoints.begin(), sumPoints.end()) - sumPoints.begin()]); // 3
     return newPoints;
 }
 
@@ -93,6 +92,39 @@ Mat getSodukuBoard(Mat sodukuBoardImage) {
     return sodukuBoardProcessed;
 }
 
+void remove_border(const Mat &image, Mat &result) {
+    // Convert the image to grayscale
+    Mat gray;
+    cvtColor(image, gray, COLOR_BGR2GRAY);
+
+    // Find the edges in the image using canny edge detection
+    Mat edges;
+    Canny(gray, edges, 70, 150);
+
+    // Find the contours in the edges image
+    vector<vector<Point>> contours;
+    findContours(edges, contours, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE);
+
+    // Find the largest contour in the list of contours
+    int largest_contour_index = 0;
+    double largest_area = 0;
+    for (int i = 0; i < contours.size(); i++) {
+        double area = contourArea(contours[i]);
+        if (area > largest_area && area != edges.cols * edges.rows) {
+            largest_area = area;
+            largest_contour_index = i;
+        }
+    }
+
+    // Create a mask for the image using the largest contour
+    Mat mask = Mat::zeros(gray.size(), CV_8UC1);
+    drawContours(mask, contours, largest_contour_index, Scalar(255), -1);
+
+    // Apply the mask to the original image to remove the border
+    bitwise_and(image, image, result, mask);
+}
+
+
 /** Detect and return a matrix version of the Soduku Board from the given image. */
 vector<Mat> sodukuBoardDetector(Mat sodukuBoardImage) {
     Mat sodukuBoardCropped = getSodukuBoard(sodukuBoardImage);
@@ -104,7 +136,8 @@ vector<Mat> sodukuBoardDetector(Mat sodukuBoardImage) {
                int x = i * sodukuBoardCropped.cols / 9;
                int y = j * sodukuBoardCropped.rows / 9;
                Mat box = sodukuBoardCropped(Rect(x, y, (sodukuBoardCropped.cols / 9), (sodukuBoardCropped.rows / 9)));
-               boxes.push_back(box);
+               Mat boxCropped = box(Rect(11, 12, 57, 63));
+               boxes.push_back(boxCropped);
            }
        }
     return boxes;

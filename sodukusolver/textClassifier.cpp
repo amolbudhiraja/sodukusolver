@@ -8,6 +8,8 @@
 #include <string>
 #include <tesseract/baseapi.h>
 #include <leptonica/allheaders.h>
+#include <ctype.h>
+#include<stdio.h>
 #include <opencv2/opencv.hpp>
 #include <opencv2/ml.hpp>
 #include <opencv2/imgcodecs.hpp>
@@ -25,7 +27,11 @@ using namespace tesseract;
 
 /** Return the labels of the train image where 0 represents an empty box and 1 represents a filled box (contains a number). */
 vector<int> getLabels() {
-    vector<int> trainImageLabels = {0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0};
+    vector<int> trainImageLabels;
+    vector<int> trainLabels1 = {0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0};
+    vector<int> trainLabels2 = {1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1};
+    vector <int> trainLabels3 = {0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0};
+    trainImageLabels.insert(trainImageLabels.end(), trainLabels1.begin(), trainLabels1.end());
     return trainImageLabels;
 }
 
@@ -93,11 +99,15 @@ int classifyBoxType(vector<Mat> trainingImages, Mat imageClassify) {
 
 /** Using the Tesseract OCR Library classify the digit in filled soduku board boxes. */
 string classifyTextFromImage(vector<Mat> trainingImages, Mat image) {
+    int boxType = classifyBoxType(trainingImages, image);
     Ptr<TessBaseAPI> ocr = new TessBaseAPI();
     ocr->Init(NULL, "eng", tesseract::OEM_LSTM_ONLY);
     ocr->SetPageSegMode(tesseract::PSM_SINGLE_CHAR);
     ocr->SetImage(image.data, image.cols, image.rows, 3, (int) image.step);
     string imageText = string(ocr->GetUTF8Text());
     ocr ->End();
+    if (boxType == 0 || !isdigit(imageText[0])) {
+        return ".";
+    }
     return imageText;
 }
