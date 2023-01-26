@@ -13,9 +13,20 @@
 #include "sodukuBoardDetector.hpp"
 #include "textClassifier.hpp"
 #include "sodukuSolver.hpp"
+#include "displaySodukuBoard.hpp"
 
 using namespace cv;
 using namespace std;
+
+/** Print a string representation of soduku board, BOARD. */
+void printSodukuBoard(vector<vector<char>> board) {
+    for (int i = 0; i < 9; i++) {
+        for (int j = 0; j < 9; j++) {
+            cout << board.at(i).at(j) << endl;
+        }
+    }
+}
+
 
 int main() {
     Mat sodukuBoardImage = imread("/Users/abudhiraja/Documents/sodukusolver/sodukusolver/media/soduku.jpeg");
@@ -47,6 +58,7 @@ int main() {
         }
         sodukuBoard.push_back(currRow);
     }
+//    printSodukuBoard(sodukuBoard);
     vector<vector<char>> testBoard = {
         {'5', '3', '.', '.', '7', '.', '.', '.', '.'},
         {'6', '.', '.', '1', '9', '5', '.', '.', '.'},
@@ -58,12 +70,8 @@ int main() {
         {'.', '.', '.', '4', '1', '9', '.', '.', '5'},
         {'.', '.', '.', '.', '8', '.', '.', '7', '9'}
     };
-    bool solveable = solveSudoku(testBoard);
-    cout << solveable << endl;
-    for (int i = 0; i < 9; i++) {
-        for (int j = 0; j < 9; j++) {
-            cout << testBoard.at(i).at(j) << endl; 
-        }
-    }
+    solveSudoku(testBoard);
+    displaySudokuBoard(testBoard);
     return 0;
 }
+

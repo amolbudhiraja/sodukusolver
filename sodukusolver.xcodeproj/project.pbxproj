@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		DC04E960297D15490055D321 /* sodukuSolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DC04E95E297D15490055D321 /* sodukuSolver.cpp */; };
 		DC2777CA2977EABC00C8F5AD /* libtesseract.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DC2777C92977EABC00C8F5AD /* libtesseract.5.dylib */; };
+		DCA7EF70298339000016CCDE /* displaySodukuBoard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DCA7EF6E298339000016CCDE /* displaySodukuBoard.cpp */; };
 		DCFB1D95296CBD5300643498 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DCFB1D94296CBD5300643498 /* main.cpp */; };
 		DCFB21FE296CC45E00643498 /* libopencv_bgsegm.4.7.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DCFB21C3296CC45D00643498 /* libopencv_bgsegm.4.7.0.dylib */; };
 		DCFB21FF296CC45E00643498 /* libopencv_fuzzy.4.7.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DCFB21C4296CC45D00643498 /* libopencv_fuzzy.4.7.0.dylib */; };
@@ -88,6 +89,8 @@
 		DC04E95F297D15490055D321 /* sodukuSolver.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = sodukuSolver.hpp; sourceTree = "<group>"; };
 		DC2777C92977EABC00C8F5AD /* libtesseract.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libtesseract.5.dylib; path = ../../../../opt/homebrew/Cellar/tesseract/5.3.0_1/lib/libtesseract.5.dylib; sourceTree = "<group>"; };
 		DC84CF0E2971629F00F37CB7 /* media */ = {isa = PBXFileReference; lastKnownFileType = folder; path = media; sourceTree = "<group>"; };
+		DCA7EF6E298339000016CCDE /* displaySodukuBoard.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = displaySodukuBoard.cpp; sourceTree = "<group>"; };
+		DCA7EF6F298339000016CCDE /* displaySodukuBoard.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = displaySodukuBoard.hpp; sourceTree = "<group>"; };
 		DCFB1D91296CBD5300643498 /* sodukusolver */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = sodukusolver; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCFB1D94296CBD5300643498 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		DCFB21C3296CC45D00643498 /* libopencv_bgsegm.4.7.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_bgsegm.4.7.0.dylib; path = ../../../../opt/homebrew/Cellar/opencv/4.7.0/lib/libopencv_bgsegm.4.7.0.dylib; sourceTree = "<group>"; };
@@ -309,6 +312,8 @@
 				DCFB2241296E230A00643498 /* textClassifier.hpp */,
 				DC04E95E297D15490055D321 /* sodukuSolver.cpp */,
 				DC04E95F297D15490055D321 /* sodukuSolver.hpp */,
+				DCA7EF6E298339000016CCDE /* displaySodukuBoard.cpp */,
+				DCA7EF6F298339000016CCDE /* displaySodukuBoard.hpp */,
 			);
 			path = sodukusolver;
 			sourceTree = "<group>";
@@ -372,6 +377,7 @@
 			files = (
 				DCFB1D95296CBD5300643498 /* main.cpp in Sources */,
 				DCFB223A296CCBB000643498 /* sodukuBoardDetector.cpp in Sources */,
+				DCA7EF70298339000016CCDE /* displaySodukuBoard.cpp in Sources */,
 				DCFB2242296E230A00643498 /* textClassifier.cpp in Sources */,
 				DC04E960297D15490055D321 /* sodukuSolver.cpp in Sources */,
 			);
