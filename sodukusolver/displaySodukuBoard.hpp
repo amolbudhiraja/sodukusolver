@@ -10,6 +10,6 @@
 
 using namespace std;
 
-void displaySudokuBoard(vector<vector<char>>& board);
+void displaySodokuBoard(vector<vector<char>> &board);
 
 #endif /* displaySodukuBoard_hpp */

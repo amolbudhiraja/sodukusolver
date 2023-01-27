@@ -124,6 +124,15 @@ void remove_border(const Mat &image, Mat &result) {
     bitwise_and(image, image, result, mask);
 }
 
+Mat processImage(Mat image) {
+    Mat imgGray, imgCanny, imgBlur, imgProcessed;
+    GaussianBlur(image, imgBlur, Size(3,3), 3, 0);
+    threshold(imgBlur, imgProcessed, 50, 150, 1);
+    imshow("PROCESSED IMG", imgProcessed);
+    waitKey(400);
+    return imgProcessed;
+}
+
 
 /** Detect and return a matrix version of the Soduku Board from the given image. */
 vector<Mat> sodukuBoardDetector(Mat sodukuBoardImage) {

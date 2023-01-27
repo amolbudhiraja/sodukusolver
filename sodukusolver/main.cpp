@@ -33,32 +33,33 @@ int main() {
     Mat trainingImage1 = imread("/Users/abudhiraja/Documents/sodukusolver/sodukusolver/media/sodukutrain1.png");
     Mat trainingImage2 = imread("/Users/abudhiraja/Documents/sodukusolver/sodukusolver/media/sodukutrain4.png");
     Mat trainingImage3 = imread("/Users/abudhiraja/Documents/sodukusolver/sodukusolver/media/sodukutrain5.png");
+    Mat trainingImage4 = imread("/Users/abudhiraja/Documents/sodukusolver/sodukusolver/media/sodukutrain6.png");
     vector<Mat> boxes = sodukuBoardDetector(sodukuBoardImage);
     vector<Mat> trainingImages;
     vector<Mat> trainingImages1 = sodukuBoardDetector(trainingImage1);
     vector<Mat> trainingImages2 = sodukuBoardDetector(trainingImage2);
     vector<Mat> trainingImages3 = sodukuBoardDetector(trainingImage3);
+    vector<Mat> trainingImages4 = sodukuBoardDetector(trainingImage4);
     trainingImages.insert(trainingImages.end(), trainingImages1.begin(), trainingImages1.end());
     trainingImages.insert(trainingImages.end(), trainingImages2.begin(), trainingImages2.end());
     trainingImages.insert(trainingImages.end(), trainingImages3.begin(), trainingImages3.end());
+    trainingImages.insert(trainingImages.end(), trainingImages4.begin(), trainingImages4.end());
     vector<char> parsedSodukuString;
     for (Mat box: boxes) {
         string value = classifyTextFromImage(trainingImages, box);
-
         parsedSodukuString.push_back(value.at(0));
     }
     int numRows = 9, numCols = 9, index = 0;
-    vector<vector<char>> sodukuBoard;
+    vector<vector<char>> sodukuBoard(9, vector<char>(9, '.'));
     for (int i = 0; i < numRows; i++) {
-        vector<char> currRow;
         for (int j = 0; j < numCols; j++) {
-            char item = parsedSodukuString[index];
-            currRow.push_back(item);
+            sodukuBoard[j][i] = parsedSodukuString[index];
             index++;
         }
-        sodukuBoard.push_back(currRow);
     }
-//    printSodukuBoard(sodukuBoard);
+    sodukuBoard.at(5).at(6) = '.'; // FIXME - REMOVE
+    sodukuBoard.at(7).at(6) = '9'; // FIXME - REMOVE
+    sodukuBoard.at(8).at(7) = '5'; // FIXME - REMOVE
     vector<vector<char>> testBoard = {
         {'5', '3', '.', '.', '7', '.', '.', '.', '.'},
         {'6', '.', '.', '1', '9', '5', '.', '.', '.'},
@@ -70,8 +71,8 @@ int main() {
         {'.', '.', '.', '4', '1', '9', '.', '.', '5'},
         {'.', '.', '.', '.', '8', '.', '.', '7', '9'}
     };
-    solveSudoku(testBoard);
-    displaySudokuBoard(testBoard);
+    solveSudoku(sodukuBoard);
+    displaySodokuBoard(sodukuBoard);
     return 0;
 }
 
