@@ -13,6 +13,6 @@ This program can solve any Soduku Board with the following proceedure:
 6. Finally, I construct a visual representation of the solved Sodoku Board and display it to the user. This task is handled by the `displaySodokuBoard` method. 
 
 ## Installation Instructions
-To install the application, use `git clone` to clone the git repository. Then open the sodukusolver.xcodeproj file and click run. Note: this project can only be run on mac devices. 
+To install the application, use `git clone` to clone the git repository. Next, install the relevant `OpenCV` and `Tesseract` libraries using `HomeBrew`. Then open the sodukusolver.xcodeproj file and click run. Note: this project can only be run on mac devices. 
 
 To change the board being solved, upload the image to the code and pass its location into the `sodukuBoardImage`'s associated `imread` method. 
