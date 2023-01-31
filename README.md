@@ -1,5 +1,5 @@
 # sodukusolver
-Computer vision based realtime Soduku game solver. 
+Sodoku Board Solver with Computer Vision and Machine Learning.
 
 ## About
 As a big fan of the Sodoku game, I decided to build an autonomous Sodoku solver that could take any image and solve the board in the image. Moreover, wanting to learn C++, I knew creating this project was the perfect learning experience. 
