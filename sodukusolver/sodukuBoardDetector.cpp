@@ -92,53 +92,9 @@ Mat getSodukuBoard(Mat sodukuBoardImage) {
     return sodukuBoardProcessed;
 }
 
-void remove_border(const Mat &image, Mat &result) {
-    // Convert the image to grayscale
-    Mat gray;
-    cvtColor(image, gray, COLOR_BGR2GRAY);
-
-    // Find the edges in the image using canny edge detection
-    Mat edges;
-    Canny(gray, edges, 70, 150);
-
-    // Find the contours in the edges image
-    vector<vector<Point>> contours;
-    findContours(edges, contours, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE);
-
-    // Find the largest contour in the list of contours
-    int largest_contour_index = 0;
-    double largest_area = 0;
-    for (int i = 0; i < contours.size(); i++) {
-        double area = contourArea(contours[i]);
-        if (area > largest_area && area != edges.cols * edges.rows) {
-            largest_area = area;
-            largest_contour_index = i;
-        }
-    }
-
-    // Create a mask for the image using the largest contour
-    Mat mask = Mat::zeros(gray.size(), CV_8UC1);
-    drawContours(mask, contours, largest_contour_index, Scalar(255), -1);
-
-    // Apply the mask to the original image to remove the border
-    bitwise_and(image, image, result, mask);
-}
-
-Mat processImage(Mat image) {
-    Mat imgGray, imgCanny, imgBlur, imgProcessed;
-    GaussianBlur(image, imgBlur, Size(3,3), 3, 0);
-    threshold(imgBlur, imgProcessed, 50, 150, 1);
-    imshow("PROCESSED IMG", imgProcessed);
-    waitKey(400);
-    return imgProcessed;
-}
-
-
 /** Detect and return a matrix version of the Soduku Board from the given image. */
 vector<Mat> sodukuBoardDetector(Mat sodukuBoardImage) {
     Mat sodukuBoardCropped = getSodukuBoard(sodukuBoardImage);
-//    imshow("CROP", sodukuBoardCropped);
-//    waitKey(800);
     vector<Mat> boxes;
        for(int i = 0; i < 9; i++) {
            for(int j = 0; j < 9; j++) {

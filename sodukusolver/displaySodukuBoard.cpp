@@ -12,6 +12,7 @@
 using namespace std;
 using namespace cv;
 
+/** Display an image representation of the Soduku Board. */
 void displaySodokuBoard(vector<vector<char>> &board) {
     Mat img(450, 450, CV_8UC3, Scalar(255, 255, 255));
     int x_offset = 0, y_offset = 0;

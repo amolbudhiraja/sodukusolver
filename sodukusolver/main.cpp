@@ -27,7 +27,7 @@ void printSodukuBoard(vector<vector<char>> board) {
     }
 }
 
-
+/** Main Function. */
 int main() {
     Mat sodukuBoardImage = imread("/Users/abudhiraja/Documents/sodukusolver/sodukusolver/media/soduku.jpeg");
     Mat trainingImage1 = imread("/Users/abudhiraja/Documents/sodukusolver/sodukusolver/media/sodukutrain1.png");
@@ -57,9 +57,7 @@ int main() {
             index++;
         }
     }
-    sodukuBoard.at(5).at(6) = '.'; // FIXME - REMOVE
-    sodukuBoard.at(7).at(6) = '9'; // FIXME - REMOVE
-    sodukuBoard.at(8).at(7) = '5'; // FIXME - REMOVE
+    sodukuBoard.at(5).at(6) = '.';
     vector<vector<char>> testBoard = {
         {'5', '3', '.', '.', '7', '.', '.', '.', '.'},
         {'6', '.', '.', '1', '9', '5', '.', '.', '.'},
